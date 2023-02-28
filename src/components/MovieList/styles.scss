@@ -1,0 +1,28 @@
+.movieList {
+    font-size: .8rem;
+
+    &__btn,
+    &__btnTrash {
+        background-color: transparent;
+        border: none;
+        display: flex;
+        margin: .5rem 0;
+        padding: 0;
+
+        svg {
+            color: #c7d1d1;
+        }
+    }
+
+    &__btn {
+        svg:hover {
+            color: #ffbf00;
+        }
+    }
+
+    &__btnTrash {
+        svg {
+            color: #d62a17;
+        }
+    }
+}

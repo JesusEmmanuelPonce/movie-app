@@ -1,0 +1,8 @@
+.goToHomeBtn {
+    display: flex;
+
+    & svg {
+        margin-left: .5rem;
+        font-size: 1.4rem;
+    }
+}
