@@ -1,23 +1,10 @@
 import { connect } from 'react-redux';
-import { useEffect } from 'react'
 
 import bindAll from 'helpers/bindAll';
 import MovieList from 'components/MovieList';
 import MoviesServices from 'store/services/MoviesServices';
 
-const TvPage = ({ moviesServices, tvs }) => {
-
-    console.log(tvs);
-
-    useEffect(() => {
-        const getTVs = () => {
-            moviesServices.getTVs();
-        };
-    
-        getTVs();
-    
-    // eslint-disable-next-line
-    }, []);
+const TvPage = ({ tvs }) => {
 
     return (
         <main>

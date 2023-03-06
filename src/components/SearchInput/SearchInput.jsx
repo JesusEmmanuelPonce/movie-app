@@ -1,27 +1,46 @@
 import { connect } from 'react-redux';
+import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import bindAll from 'helpers/bindAll';
-import MoviesAction from 'store/actions/MoviesAction';
+import MoviesServices from 'store/services/MoviesServices';
 import "./styles.scss";
 
-const SearchInput = ({ moviesAction, search }) => {
+const SearchInput = ({ moviesServices }) => {
 
-    console.log(search)
+    const navigate = useNavigate();
+    const { pathname } = useLocation();
+    const [search, setSearch] = useState("");
+
+    const onSearch = () => {
+
+        console.log(pathname)
+
+        if(pathname === "/tv") {
+            moviesServices.getTVs();
+            navigate(`/tv/${search}`)
+        } else {
+            moviesServices.getMovies();
+            navigate(`/movie/${search}`)
+        }
+
+    }
 
     return (
         <Form className="d-flex">
             <Form.Control
-                type="search"
+                type="text"
                 placeholder="Search movie"
                 value={search}
-                onChange={({ target: { value } }) => moviesAction.setSearch(value)}
+                name="search"
+                onChange={({ target: { value } }) => setSearch(value)}
                 className="me-2"
-                aria-label="Search"
             />
             <Button
                 variant="outline-success"
                 type="button"
+                onClick={onSearch}
             >
                 Search
             </Button>
@@ -29,10 +48,6 @@ const SearchInput = ({ moviesAction, search }) => {
     )
 }
 
-const mapStateToProps = ({ appReducer }) => ({
-    search: appReducer?.search ?? "",
-});
+const mapDispatchToProps = bindAll({ MoviesServices });
 
-const mapDispatchToProps = bindAll({ MoviesAction });
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchInput);
+export default connect(null, mapDispatchToProps)(SearchInput);

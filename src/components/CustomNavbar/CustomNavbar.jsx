@@ -3,8 +3,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { NavLink } from 'react-router-dom';
-import SearchInput from 'components/SearchInput';
 
+import SearchInput from 'components/SearchInput';
 import "./styles.scss";
 
 const CustomNavbar = () => {
@@ -23,16 +23,18 @@ const CustomNavbar = () => {
               
               <NavLink
                 to="/"
-                className="customNavbar__linkItems"
-                activeClass="active"
+                className={({ isActive }) => {
+                  return isActive ? "customNavbar__linkItems active" : "customNavbar__linkItems";
+                }}
               >
                 Movies
               </NavLink>
             
               <NavLink
                 to="/tv"
-                className="customNavbar__linkItems"
-                activeClass="active"
+                className={({ isActive }) => {
+                  return isActive ? "customNavbar__linkItems active" : "customNavbar__linkItems";
+                }}
               >
                 TV
               </NavLink>

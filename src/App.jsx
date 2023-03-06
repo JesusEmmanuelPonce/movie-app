@@ -6,6 +6,7 @@ import AppLayout from 'components/AppLayout';
 import FavoritesPage from 'pages/FavoritesPage';
 import SearchListPage from 'pages/SearchListPage';
 import './App.css';
+import TvSearchPage from 'pages/TvSearchPage';
 
 const App = () => {
 
@@ -14,9 +15,12 @@ const App = () => {
       <Routes>
         <Route path='/' element={<AppLayout />}>
           <Route index element={<Home />} />
-          <Route path=':search' element={<SearchListPage />} />
           <Route path='favorites' element={<FavoritesPage />} />
+          {/* <Route path='tv' element={<TvPage />} /> */}
+          <Route path='movie/:search' element={<SearchListPage />} />
+
           <Route path='tv' element={<TvPage />} />
+          <Route path='tv/:search' element={<TvSearchPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
