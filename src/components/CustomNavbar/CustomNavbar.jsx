@@ -1,39 +1,48 @@
-import SearchInput from 'components/SearchInput';
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import Container from 'react-bootstrap/Container';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import { NavLink } from 'react-router-dom';
+import SearchInput from 'components/SearchInput';
+
+import "./styles.scss";
 
 const CustomNavbar = () => {
-    return (
-        <Navbar expand='md' className="mb-3">
-          <Container fluid>
-            <Navbar.Brand href="#">Navbar Offcanvas</Navbar.Brand>
-            <Navbar.Toggle aria-controls='offcanvasNavbar-expand-md' />
-            <Navbar.Offcanvas
-              id='offcanvasNavbar-expand-md'
-              aria-labelledby='offcanvasNavbar-expand-md'
-              placement="end"
-            >
-              <Offcanvas.Header closeButton>
-                <Offcanvas.Title id='offcanvasNavbar-expand-md'>
-                  Offcanvas
-                </Offcanvas.Title>
-              </Offcanvas.Header>
-              <Offcanvas.Body>
-                <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="#action1">Home</Nav.Link>
-                  <Nav.Link href="#action2">Link</Nav.Link>
-                </Nav>
-                <SearchInput />
-              </Offcanvas.Body>
-            </Navbar.Offcanvas>
-          </Container>
-        </Navbar>
-    )
+  return (
+    <Navbar bg='light' expand='md' className="mb-3 p-3 customNavbar">
+      <Container fluid>
+        <Navbar.Brand href="#">Navbar Offcanvas</Navbar.Brand>
+        <Navbar.Toggle aria-controls='offcanvasNavbar-expand-md' />
+        <Navbar.Offcanvas
+          id='offcanvasNavbar-expand-md'
+          aria-labelledby='offcanvasNavbar-expand-md'
+          placement="end"
+        >
+          <Offcanvas.Body>
+            <Nav className="align-items-center justify-content-end flex-grow-1 pe-3">
+              
+              <NavLink
+                to="/"
+                className="customNavbar__linkItems"
+                activeClass="active"
+              >
+                Movies
+              </NavLink>
+            
+              <NavLink
+                to="/tv"
+                className="customNavbar__linkItems"
+                activeClass="active"
+              >
+                TV
+              </NavLink>
+            </Nav>
+            <SearchInput />
+          </Offcanvas.Body>
+        </Navbar.Offcanvas>
+      </Container>
+    </Navbar>
+  )
 }
 
 export default CustomNavbar
