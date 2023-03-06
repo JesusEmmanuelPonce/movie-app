@@ -1,45 +1,38 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import { Button, Form, InputGroup } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { Button, Form } from 'react-bootstrap';
 
+import bindAll from 'helpers/bindAll';
+import MoviesAction from 'store/actions/MoviesAction';
 import "./styles.scss";
 
-const SearchInput = () => {
+const SearchInput = ({ moviesAction, search }) => {
 
-    const navigate = useNavigate();
-    const [search, setSearch] = useState("");
-
-    const goToMovieWanted = () => {
-        navigate(`/${search}`)
-    }
-
-    const goToFavorites = () => {
-        navigate('/favorites');
-    }
+    console.log(search)
 
     return (
-        <section className='searchInput container'>
-            <InputGroup className='searchInput__group' style={{ maxWidth: "20rem", marginRight: ".2rem" }}>
-                <Form.Control
-                    placeholder="Search movie"
-                    onChange={({ target: { value } }) => setSearch(value)}
-                />
-                <Button
-                    variant="outline-secondary"
-                    onClick={goToMovieWanted}
-                >
-                    Buscar
-                </Button>
-            </InputGroup>
-            <button
-                type='button'
-                className='btn btn-success'
-                onClick={goToFavorites}
+        <Form className="d-flex">
+            <Form.Control
+                type="search"
+                placeholder="Search movie"
+                value={search}
+                onChange={({ target: { value } }) => moviesAction.setSearch(value)}
+                className="me-2"
+                aria-label="Search"
+            />
+            <Button
+                variant="outline-success"
+                type="button"
             >
-                My favorites
-            </button>
-        </section>
+                Search
+            </Button>
+        </Form>
     )
 }
 
-export default SearchInput;
+const mapStateToProps = ({ appReducer }) => ({
+    search: appReducer?.search ?? "",
+});
+
+const mapDispatchToProps = bindAll({ MoviesAction });
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchInput);

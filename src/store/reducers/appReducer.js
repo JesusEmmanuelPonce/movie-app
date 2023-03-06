@@ -1,6 +1,7 @@
-import { DELETE_MOVIE_FAVORITE, SET_MOVIES, SET_MOVIES_WANTED, SET_MOVIE_FAVORITE } from "../types";
+import { DELETE_MOVIE_FAVORITE, SET_MOVIES, SET_MOVIES_WANTED, SET_MOVIE_FAVORITE, SET_SEARCH } from "../types";
 
 const initialState = {
+    search: "",
     movies: [],
     moviesWanted: [],
     moviesFavorites: []
@@ -13,6 +14,13 @@ const appReducer = (state = initialState, action) => {
             return {
                 ...state,
                 movies: action?.payload,
+            }
+
+        case SET_SEARCH:
+
+            return {
+                ...state,
+                search: action?.payload,
             }
 
         case SET_MOVIES_WANTED: 
