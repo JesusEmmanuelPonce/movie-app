@@ -26,7 +26,7 @@ const SearchListPage = ({ moviesServices, moviesWanted }) => {
     onSearchMovie();
 
   // eslint-disable-next-line
-  }, []);
+  }, [search]);
 
   if(!moviesWanted.length) return (
     <section className='d-flex flex-column align-items-center'>

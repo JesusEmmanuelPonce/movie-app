@@ -1,14 +1,9 @@
 .searchInput {
-    flex-direction: column;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-
     font-size: 1rem;
-    margin-bottom: 1.4rem;
     
-    &__group {
-        margin-right: .5rem;
-        margin-bottom: .5rem;
+    &__favoritesBtn {
+        align-items: center;
+        display: flex;
+        margin-left: .5rem;
     }
 }

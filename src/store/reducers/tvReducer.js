@@ -1,7 +1,8 @@
-import { SET_TV } from "store/types";
+import { SET_TV, SET_TV_WANTED } from "store/types";
 
 const initialState = {
     tv: [],
+    tvsWanted: [],
 };
 
 const tvReducer = (state = initialState, action) => {
@@ -11,6 +12,12 @@ const tvReducer = (state = initialState, action) => {
             return {
                 ...state,
                 tv: action?.payload,
+            }
+
+        case SET_TV_WANTED:
+            return {
+                ...state,
+                tvsWanted: action?.payload,
             }
     
         default:

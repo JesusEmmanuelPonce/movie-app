@@ -1,37 +1,47 @@
-import { connect } from 'react-redux';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Star from 'resources/icon/Star';
 
-import bindAll from 'helpers/bindAll';
-import MoviesServices from 'store/services/MoviesServices';
 import "./styles.scss";
 
-const SearchInput = ({ moviesServices }) => {
+const SearchInput = () => {
 
     const navigate = useNavigate();
     const { pathname } = useLocation();
     const [search, setSearch] = useState("");
+    const [placeholder, setPlaceholder] = useState("");
 
     const onSearch = () => {
 
-        console.log(pathname)
-
-        if(pathname === "/tv") {
-            moviesServices.getTVs();
+        if(pathname.includes("/tv")) {
             navigate(`/tv/${search}`)
         } else {
-            moviesServices.getMovies();
             navigate(`/movie/${search}`)
         }
 
+        setSearch("");
+
     }
 
+    useEffect(() => {
+        const onPlaceholder = () => {
+            if(pathname.includes("/tv")){
+                setPlaceholder("Search a tv show")
+            } else {
+                setPlaceholder("Search a movie")
+            }
+        };
+
+        onPlaceholder();
+
+    }, [pathname])
+
     return (
-        <Form className="d-flex">
+        <Form className="d-flex searchInput">
             <Form.Control
                 type="text"
-                placeholder="Search movie"
+                placeholder={placeholder}
                 value={search}
                 name="search"
                 onChange={({ target: { value } }) => setSearch(value)}
@@ -44,10 +54,16 @@ const SearchInput = ({ moviesServices }) => {
             >
                 Search
             </Button>
+            <Button
+                variant="outline-warning"
+                type="button"
+                onClick={() => navigate("/favorites")}
+                className="d-flex searchInput__favoritesBtn"
+            >
+                <Star />
+            </Button>
         </Form>
     )
 }
 
-const mapDispatchToProps = bindAll({ MoviesServices });
-
-export default connect(null, mapDispatchToProps)(SearchInput);
+export default SearchInput;
