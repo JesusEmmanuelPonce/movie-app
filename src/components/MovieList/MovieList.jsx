@@ -43,45 +43,43 @@ const MovieList = ({ movies, moviesFavorites, moviesAction, status = "" }) => {
         <section className='container movieList'>
             <div className="row">
                 {isValidArr(movies) && movies.map(movie => (
-                    <Card
-                        key={movie?.id}
-                        className='m-2 p-0'
-                        style={{ width: '18rem' }}
-                    >
-                        <Card.Img variant="top" src={movie?.backdrop_path ? `https://image.tmdb.org/t/p/w500${movie?.backdrop_path}` : NoImage } />
-                        <Card.Body>
-                            <Card.Title>{ movie?.title ? movie?.title : movie?.name }
-                            {status === "" ? 
-                                <OverlayTrigger
-                                    placement="right"
-                                    delay={{ show: 250, hide: 400 }}
-                                    overlay={renderTooltip}
-                                >
-                                    <button
-                                        className='movieList__btn'
-                                        onClick={() => addToFavorites(movie?.id)}
+                    <div className='p-3 col-lg-4 col-md-6'>
+                        <Card key={movie?.id}>
+                            <Card.Img variant="top" src={movie?.backdrop_path ? `https://image.tmdb.org/t/p/w500${movie?.backdrop_path}` : NoImage } />
+                            <Card.Body>
+                                <Card.Title>{ movie?.title ? movie?.title : movie?.name }
+                                {status === "" ? 
+                                    <OverlayTrigger
+                                        placement="right"
+                                        delay={{ show: 250, hide: 400 }}
+                                        overlay={renderTooltip}
                                     >
-                                        <Star />
-                                    </button> 
-                                </OverlayTrigger> :
-                                <OverlayTrigger
-                                    placement="right"
-                                    delay={{ show: 250, hide: 400 }}
-                                    overlay={deleteTooltip}
-                                >
                                         <button
-                                            className='movieList__btnTrash'
-                                            onClick={() => removeFromFavorites(movie?.id)}
+                                            className='movieList__btn'
+                                            onClick={() => addToFavorites(movie?.id)}
                                         >
-                                            <Trash />
+                                            <Star />
                                         </button> 
-                                </OverlayTrigger>
-                            }
+                                    </OverlayTrigger> :
+                                    <OverlayTrigger
+                                        placement="right"
+                                        delay={{ show: 250, hide: 400 }}
+                                        overlay={deleteTooltip}
+                                    >
+                                            <button
+                                                className='movieList__btnTrash'
+                                                onClick={() => removeFromFavorites(movie?.id)}
+                                            >
+                                                <Trash />
+                                            </button> 
+                                    </OverlayTrigger>
+                                }
 
-                            </Card.Title>
-                            <Card.Text>{ movie?.overview ? movie?.overview : "No description" }</Card.Text>
-                        </Card.Body>
-                    </Card>
+                                </Card.Title>
+                                <Card.Text>{ movie?.overview ? movie?.overview : "No description" }</Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </div>
                 ))}
             </div>
         </section>   
