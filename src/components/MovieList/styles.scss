@@ -1,6 +1,10 @@
 .movieList {
     font-size: .8rem;
 
+    .activeFavorite {
+        color: #ffbf00;
+    }
+
     &__btn,
     &__btnTrash {
         background-color: transparent;

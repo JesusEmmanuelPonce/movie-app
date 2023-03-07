@@ -3,7 +3,6 @@ import { useEffect } from 'react'
 
 import bindAll from 'helpers/bindAll';
 import MovieList from 'components/MovieList';
-import SearchInput from 'components/SearchInput';
 import MoviesServices from 'store/services/MoviesServices';
 
 const Home = ({ moviesServices, movies }) => {

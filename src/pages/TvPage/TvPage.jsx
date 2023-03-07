@@ -7,8 +7,6 @@ import MoviesServices from 'store/services/MoviesServices';
 
 const TvPage = ({ moviesServices, tvs }) => {
 
-    console.log(tvs);
-
     useEffect(() => {
         const getTVs = () => {
             moviesServices.getTVs();
