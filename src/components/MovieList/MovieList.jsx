@@ -50,7 +50,7 @@ const MovieList = ({ movies, moviesFavorites, moviesAction, status = "" }) => {
                     >
                         <Card.Img variant="top" src={movie?.backdrop_path ? `https://image.tmdb.org/t/p/w500${movie?.backdrop_path}` : NoImage } />
                         <Card.Body>
-                            <Card.Title>{ movie?.title }
+                            <Card.Title>{ movie?.title ? movie?.title : movie?.name }
                             {status === "" ? 
                                 <OverlayTrigger
                                     placement="right"

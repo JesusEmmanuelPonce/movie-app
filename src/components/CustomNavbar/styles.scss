@@ -1,0 +1,16 @@
+.customNavbar {
+    &__linkItems {
+        color: #100f0f;
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-decoration: none;
+
+        &:first-child {
+            padding-right: .9rem;
+        }
+
+        &.active {
+            color: red;
+        }
+    }
+}

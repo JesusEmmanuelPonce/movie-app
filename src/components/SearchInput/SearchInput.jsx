@@ -1,44 +1,68 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import { Button, Form, InputGroup } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Star from 'resources/icon/Star';
 
 import "./styles.scss";
 
 const SearchInput = () => {
 
     const navigate = useNavigate();
+    const { pathname } = useLocation();
     const [search, setSearch] = useState("");
+    const [placeholder, setPlaceholder] = useState("");
 
-    const goToMovieWanted = () => {
-        navigate(`/${search}`)
+    const onSearch = () => {
+
+        if(pathname.includes("/tv")) {
+            navigate(`/tv/${search}`)
+        } else {
+            navigate(`/movie/${search}`)
+        }
+
+        setSearch("");
+
     }
 
-    const goToFavorites = () => {
-        navigate('/favorites');
-    }
+    useEffect(() => {
+        const onPlaceholder = () => {
+            if(pathname.includes("/tv")){
+                setPlaceholder("Search a tv show")
+            } else {
+                setPlaceholder("Search a movie")
+            }
+        };
+
+        onPlaceholder();
+
+    }, [pathname])
 
     return (
-        <section className='searchInput container'>
-            <InputGroup className='searchInput__group' style={{ maxWidth: "20rem", marginRight: ".2rem" }}>
-                <Form.Control
-                    placeholder="Search movie"
-                    onChange={({ target: { value } }) => setSearch(value)}
-                />
-                <Button
-                    variant="outline-secondary"
-                    onClick={goToMovieWanted}
-                >
-                    Buscar
-                </Button>
-            </InputGroup>
-            <button
-                type='button'
-                className='btn btn-success'
-                onClick={goToFavorites}
+        <Form className="d-flex searchInput">
+            <Form.Control
+                type="text"
+                placeholder={placeholder}
+                value={search}
+                name="search"
+                onChange={({ target: { value } }) => setSearch(value)}
+                className="me-2"
+            />
+            <Button
+                variant="outline-success"
+                type="button"
+                onClick={onSearch}
             >
-                My favorites
-            </button>
-        </section>
+                Search
+            </Button>
+            <Button
+                variant="outline-warning"
+                type="button"
+                onClick={() => navigate("/favorites")}
+                className="d-flex searchInput__favoritesBtn"
+            >
+                <Star />
+            </Button>
+        </Form>
     )
 }
 

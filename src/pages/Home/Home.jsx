@@ -9,18 +9,18 @@ import MoviesServices from 'store/services/MoviesServices';
 const Home = ({ moviesServices, movies }) => {
 
     useEffect(() => {
-        const getAllConditions = () => {
+        const getAllMovies = () => {
             moviesServices.getMovies();
         };
     
-        getAllConditions();
+        getAllMovies();
     
     // eslint-disable-next-line
     }, []);
 
     return (
         <main>
-            <SearchInput />
+            {/* <SearchInput /> */}
             <MovieList movies={movies} />
         </main>
     )

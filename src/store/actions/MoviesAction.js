@@ -1,8 +1,13 @@
-import { DELETE_MOVIE_FAVORITE, SET_MOVIES, SET_MOVIES_WANTED, SET_MOVIE_FAVORITE } from "store/types";
+import { DELETE_MOVIE_FAVORITE, SET_MOVIES, SET_MOVIES_WANTED, SET_MOVIE_FAVORITE, SET_SEARCH } from "store/types";
 
 const setMovies = movies => ({
     type: SET_MOVIES,
     payload: movies
+});
+
+const setSearch = name => ({
+    type: SET_SEARCH,
+    payload: name
 });
 
 const setMoviesWanted = movies => ({
@@ -22,6 +27,7 @@ const deleteMovieFavorite = idMovie => ({
 
 const MoviesAction = {
     setMovies,
+    setSearch,
     setMoviesWanted,
     setMovieFavorite,
     deleteMovieFavorite,
