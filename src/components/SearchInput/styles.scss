@@ -1,5 +1,11 @@
 .searchInput {
     font-size: 1rem;
+
+    &__input {
+        border: 1px solid #979797;
+        border-radius: 7px;
+        outline: none;
+    }
     
     &__favoritesBtn {
         align-items: center;

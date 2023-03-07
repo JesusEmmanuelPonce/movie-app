@@ -28,6 +28,7 @@ const FavoritesPage = ({ moviesFavorites }) => {
 
   return (
     <section>
+      <h2 className='text-center'>My favorites</h2>
       <MovieList
         movies={moviesFavorites}
         status="favorites"

@@ -11,7 +11,9 @@ const CustomNavbar = () => {
   return (
     <Navbar bg='light' expand='md' className="mb-3 p-3 customNavbar">
       <Container fluid>
-        <Navbar.Brand href="#">Navbar Offcanvas</Navbar.Brand>
+        <NavLink className="customNavbar__icon" to="/">
+          Movie App
+        </NavLink>
         <Navbar.Toggle aria-controls='offcanvasNavbar-expand-md' />
         <Navbar.Offcanvas
           id='offcanvasNavbar-expand-md'

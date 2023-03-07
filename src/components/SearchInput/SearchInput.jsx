@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Star from 'resources/icon/Star';
 
@@ -39,13 +39,13 @@ const SearchInput = () => {
 
     return (
         <Form className="d-flex searchInput">
-            <Form.Control
+            <input
                 type="text"
                 placeholder={placeholder}
                 value={search}
                 name="search"
                 onChange={({ target: { value } }) => setSearch(value)}
-                className="me-2"
+                className="searchInput__input me-2"
             />
             <Button
                 variant="outline-success"
